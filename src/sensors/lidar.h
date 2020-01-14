@@ -8,11 +8,15 @@ const double pi = 3.1415;
 
 struct Ray
 {
-	
+	// 始始位置
 	Vect3 origin;
+	// 分辨率
 	double resolution;
+	// 方向
 	Vect3 direction;
+	// 投射位置
 	Vect3 castPosition;
+	// 投射距离
 	double castDistance;
 
 	// parameters:
@@ -73,6 +77,7 @@ struct Lidar
 {
 
 	std::vector<Ray> rays;
+
 	pcl::PointCloud<pcl::PointXYZ>::Ptr cloud;
 	std::vector<Car> cars;
 	Vect3 position;
@@ -85,21 +90,21 @@ struct Lidar
 	Lidar(std::vector<Car> setCars, double setGroundSlope)
 		: cloud(new pcl::PointCloud<pcl::PointXYZ>()), position(0,0,2.6)
 	{
-		// TODO:: set minDistance to 5 to remove points from roof of ego car
+		// set minDistance to 5 to remove points from roof of ego car
 		minDistance = 5;
 		maxDistance = 50;
 		resoultion = 0.2;
-		// TODO:: set sderr to 0.2 to get more interesting pcd files
-		sderr = 0.2;
+		// set sderr to 0.2 to get more interesting pcd files
+		sderr = 0.1;
 		cars = setCars;
 		groundSlope = setGroundSlope;
 
-		// TODO:: increase number of layers to 8 to get higher resoultion pcd
+		// increase number of layers to 8 to get higher resoultion pcd
 		int numLayers = 8;
 		// the steepest vertical angle
 		double steepestAngle =  30.0*(-pi/180);
 		double angleRange = 26.0*(pi/180);
-		// TODO:: set to pi/64 to get higher resoultion pcd
+		// set to pi/64 to get higher resoultion pcd
 		double horizontalAngleInc = pi/64;
 
 		double angleIncrement = angleRange/numLayers;
@@ -119,6 +124,8 @@ struct Lidar
 		// pcl uses boost smart pointers for cloud pointer so we don't have to worry about manually freeing the memory
 	}
 
+	// 生成pointcloud的函数~~
+	
 	pcl::PointCloud<pcl::PointXYZ>::Ptr scan()
 	{
 		cloud->points.clear();

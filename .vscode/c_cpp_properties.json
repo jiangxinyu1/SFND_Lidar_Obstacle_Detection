@@ -9,7 +9,9 @@
                 "/home/banban/workspace/jiangxinyu_ws/SFND_Lidar_Obstacle_Detection/src/",
                 "/usr/include/",
                 "/usr/include/pcl-1.8/",
-                "/usr/include/eigen3/"
+                "/usr/include/eigen3/",
+                "/usr/include/vtk-6.3",
+                "/usr/include/vtk-6.3"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
